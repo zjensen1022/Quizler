@@ -7,25 +7,25 @@
     tools:context=".ReviewCard">
 
     <TextView
-        android:id="@+id/ReviewfrontText"
+        android:id="@+id/ReviewFrontText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hint_front"
-        app:layout_constraintBottom_toTopOf="@+id/reviewBackText"
+        app:layout_constraintBottom_toTopOf="@+id/ReviewBackText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/reviewBackText"
+        android:id="@+id/ReviewBackText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ReviewfrontText" />
+        app:layout_constraintTop_toBottomOf="@+id/ReviewFrontText" />
 
     <Button
         android:id="@+id/nextButton"

@@ -7,10 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class ReviewCard extends AppCompatActivity {
 
     private boolean flipped; //tracks whether the answer has been revealed.
     Button nextBtn;
+    ArrayList<Card> deck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,8 +21,11 @@ public class ReviewCard extends AppCompatActivity {
         setContentView(R.layout.activity_review_card);
 
         flipped = false;
+        deck = new ArrayList<>();
 
-        //get data and populate textViews here
+        //get data in background thread and populate the ArrayList here
+        Thread thread = new Thread(new JsonReader(deck));
+        thread.start();
 
         nextBtn = findViewById(R.id.nextButton);
 
@@ -36,17 +42,19 @@ public class ReviewCard extends AppCompatActivity {
      */
     public void next(View view) {
 
-        TextView rearText = findViewById(R.id.reviewBackText);
+        TextView frontText = findViewById(R.id.ReviewFrontText);
+        TextView backText = findViewById(R.id.ReviewBackText);
 
         if(flipped) {
-            rearText.setText("");
+            frontText.setText(deck.get(0).getFrontText());
+            backText.setText("");
             nextBtn.setText(R.string.show);
             flipped = false;
         }
         else {
             // populate text fields with data from the
             // next card at this step.
-            rearText.setText(R.string.back_hint);
+            backText.setText(deck.get(0).getBackText());
             nextBtn.setText(R.string.next);
             flipped = true;
         }
