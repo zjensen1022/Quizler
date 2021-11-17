@@ -15,4 +15,8 @@
     <string name="view_cards">View Cards</string>
     <string name="review_cards">Review Cards</string>
     <string name="show">Show Answer</string>
+    <string name="no_more_cards">Finished reviewing all cards in deck, would you like to review them again?</string>
+    <string name="review_again">Review Again</string>
+    <string name="exit_review">Exit Review</string>
+    <string name="cancel">Cancel</string>
 </resources>

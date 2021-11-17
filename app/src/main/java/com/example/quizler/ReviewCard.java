@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,7 +17,7 @@ public class ReviewCard extends AppCompatActivity {
 
     private boolean flipped; // tracks whether the answer has been revealed.
     private int currentIndex; // index of current card being reviewed
-    private Card currentCard;
+    private Card currentCard; // reference to current card being reviewed.
 
     private Button nextBtn;
     private TextView frontTextView;
@@ -56,7 +55,6 @@ public class ReviewCard extends AppCompatActivity {
             public void handleOnBackPressed() {
                 Intent intent = new Intent(context, MainActivity.class);
                 context.startActivity(intent);
-                Log.d("ReviewCard","Back Button Pressed");
             }
         };
 
@@ -79,7 +77,8 @@ public class ReviewCard extends AppCompatActivity {
                 flipCard();
         }
         else {
-
+            // end of cards
+            endReview();
         }
     }
 
@@ -98,6 +97,11 @@ public class ReviewCard extends AppCompatActivity {
         frontTextView.setText(currentCard.getFrontText());
         backTextView.setText("");
         nextBtn.setText(R.string.show);
+    }
+
+    private void endReview() {
+        Intent intent = new Intent(this, EndReview.class);
+        startActivity(intent);
     }
 
 }
