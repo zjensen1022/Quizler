@@ -10,14 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Quizler">
         <activity
-<<<<<<< HEAD
             android:name=".AddDeckActivity"
-=======
-            android:name=".EndReview"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
-            android:name=".ReviewCard"
->>>>>>> master
+            android:name=".EndReview"
             android:exported="false" />
         <activity
             android:name=".CardListActivity"

@@ -15,15 +15,11 @@
     <string name="view_cards">View Cards</string>
     <string name="review_cards">Review Cards</string>
     <string name="show">Show Answer</string>
-<<<<<<< HEAD
     <string name="add_deck">Add Deck</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
     <string name="new_deck_name">New Deck Name</string>
-=======
     <string name="no_more_cards">Finished reviewing all cards in deck, would you like to review them again?</string>
     <string name="review_again">Review Again</string>
     <string name="exit_review">Exit Review</string>
-    <string name="cancel">Cancel</string>
->>>>>>> master
 </resources>
