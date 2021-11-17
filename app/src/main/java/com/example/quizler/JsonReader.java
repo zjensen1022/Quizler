@@ -13,6 +13,10 @@ public class JsonReader implements Runnable{
 
     @Override
     public void run() {
-        deck.get().add(new Card("test card", "test"));
+
+        //test functionality
+        deck.get().add(new Card("Front 1", "Back 1"));
+        deck.get().add(new Card("Front 2", "Back 2"));
+        deck.get().add(new Card("Front 3", "Back 3"));
     }
 }
