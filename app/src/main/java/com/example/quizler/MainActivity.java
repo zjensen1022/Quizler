@@ -43,4 +43,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AddDeckActivity.class);
         startActivity(intent);
     }
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        // Start a new thread to load Json data right
+        // as the application launches.
+        DataHandler.loadFromJson();
+    }
 }

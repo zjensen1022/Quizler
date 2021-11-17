@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import java.util.Collections;
 import java.util.List;
 
 public class DatabaseHelper {
@@ -30,5 +31,13 @@ public class DatabaseHelper {
         deckDao.insertAll(deck);
         db.close();
         activity.finish();
+    }
+    public static void loadCardsForReview(int deck_id, ReviewCardActivity activity) {
+        AppDatabase db = Room.databaseBuilder(activity.getApplicationContext(),
+                AppDatabase.class, DB_NAME).build();
+        CardDao cardDao = db.cardDao();
+        activity.deck = cardDao.loadAllByDeckId(deck_id);
+        activity.setupReview();
+        db.close();
     }
 }

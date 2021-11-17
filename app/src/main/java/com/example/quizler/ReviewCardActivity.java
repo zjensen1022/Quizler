@@ -1,19 +1,30 @@
 package com.example.quizler;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class ReviewCardActivity extends AppCompatActivity {
 
-    private boolean flipped; //tracks whether the answer has been revealed.
-    Button nextBtn;
-    ArrayList<Card> deck;
+    private boolean flipped; // tracks whether the answer has been revealed.
+    private int currentIndex; // index of current card being reviewed
+    private Card currentCard; // reference to current card being reviewed.
+
+    private Button nextBtn;
+    private TextView frontTextView;
+    private TextView backTextView;
+
+    List<Card> deck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,16 +32,42 @@ public class ReviewCardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_review_card);
 
         flipped = false;
-        deck = new ArrayList<>();
+//        deck = DataHandler.getCards();
 
-        //get data in background thread and populate the ArrayList here
-//        Thread thread = new Thread(new DataHelper(deck));
-//        thread.start();
-
+        frontTextView = findViewById(R.id.ReviewFrontText);
+        backTextView = findViewById(R.id.ReviewBackText);
         nextBtn = findViewById(R.id.nextButton);
 
         nextBtn.setOnClickListener(this::next);
 
+        Context context = this;
+        OnBackPressedCallback callback = new OnBackPressedCallback(true){
+            @Override
+            public void handleOnBackPressed() {
+                Intent intent = new Intent(context, MainActivity.class);
+                context.startActivity(intent);
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(callback);
+    }
+    public void setupReview() {
+        Collections.shuffle(deck);
+
+        if(currentIndex < deck.size()) {
+            currentCard = deck.get(currentIndex);
+
+            frontTextView.setText(currentCard.getTitle());
+        }
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent intent = getIntent();
+        int deckId = intent.getIntExtra("deck_id", 0);
+        Thread thread = new Thread(() -> DatabaseHelper.loadCardsForReview(deckId, this));
+        thread.start();
     }
 
     /**
@@ -41,22 +78,39 @@ public class ReviewCardActivity extends AppCompatActivity {
      * @param view
      */
     public void next(View view) {
-
-        TextView frontText = findViewById(R.id.ReviewFrontText);
-        TextView backText = findViewById(R.id.ReviewBackText);
-
-        if(flipped) {
-//            frontText.setText(deck.get(0).getTitle());
-            backText.setText("");
-            nextBtn.setText(R.string.show);
-            flipped = false;
+        if(currentIndex < deck.size()) {
+            if(flipped)
+                displayNext();
+            else
+                flipCard();
         }
         else {
-            // populate text fields with data from the
-            // next card at this step.
-//            backText.setText(deck.get(0).getDescription());
-            nextBtn.setText(R.string.next);
-            flipped = true;
+            // end of cards
+            endReview();
         }
     }
+
+    private void flipCard() {
+        backTextView.setText(currentCard.getDescription());
+        nextBtn.setText(R.string.next);
+
+        currentIndex++;
+        flipped = true;
+    }
+
+    private void displayNext() {
+        flipped = false;
+        currentCard = deck.get(currentIndex);
+
+        frontTextView.setText(currentCard.getTitle());
+        backTextView.setText("");
+        nextBtn.setText(R.string.show);
+    }
+
+    private void endReview() {
+        Intent intent = new Intent(this, EndReview.class);
+        intent.putExtra("deck_id", getIntent().getIntExtra("deck_id", 0));
+        startActivity(intent);
+    }
+
 }
