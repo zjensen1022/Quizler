@@ -11,19 +11,20 @@
     android:stateListAnimator="@animator/list_item_animation">
 
     <TextView
-        android:id="@+id/tvListItemName"
+        android:id="@+id/tvListItemFlashcardName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:maxLines="1"
         android:text="Flashcard Name"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tvListItemDescription"
+        app:layout_constraintEnd_toStartOf="@+id/tvListItemFlashcardDescription"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvListItemDescription"
+        android:id="@+id/tvListItemFlashcardDescription"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:maxLines="2"
