@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.view.View;
 
@@ -11,40 +12,35 @@ import android.view.View;
 import com.example.quizler.databinding.ActivityMainBinding;
 import com.google.android.flexbox.FlexboxLayout;
 
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    private ActivityMainBinding binding;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-        setContentView(view);
-        BottomBarItem plusButton = new BottomBarItem(this);
-        plusButton.setOnClickListener(this::addDeck);
-        BottomBarItem secondButton = new BottomBarItem(this);
-        FlexboxLayout llBottomBar = binding.bottomBarRef.flBottomBar;
-        llBottomBar.addView(plusButton);
-        llBottomBar.addView(secondButton);
-//        binding.bottomBarRef.llBottomBar.addView((View) plusButton);
+        setContentView(R.layout.activity_main);
 
+        // Set up bottom bar and put buttons in there.
+        FlexboxLayout bottomBar = findViewById(R.id.bottomBarRef);
+        CustomButton addDeckButton = new CustomButton(bottomBar.getContext());
+        addDeckButton.button.setText(R.string.add_deck);
+        addDeckButton.button.setOnClickListener(this::addDeck);
+        bottomBar.addView(addDeckButton);
+    }
 
-        binding.newCardButton.setOnClickListener(this::AddCard);
-
-        binding.reviewCardButton.setOnClickListener(view1 -> {
-            Intent intent = new Intent(this, ReviewCard.class);
-            startActivity(intent);
-        });
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Thread thread = new Thread(() -> DatabaseHelper.loadDecks(this));
+        thread.start();
     }
 
     public void addDeck(View view) {
-
-    }
-
-    public void AddCard(View view) {
-        Intent intent = new Intent(this, AddCard.class);
+        Intent intent = new Intent(this, AddDeckActivity.class);
         startActivity(intent);
     }
 }

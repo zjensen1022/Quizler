@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@color/offwhite"
     android:orientation="horizontal"
+    android:padding="8dp"
     app:flexDirection="row"
     app:justifyContent="space_around">
 

@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class ReviewCard extends AppCompatActivity {
+public class ReviewCardActivity extends AppCompatActivity {
 
     private boolean flipped; //tracks whether the answer has been revealed.
     Button nextBtn;
@@ -24,8 +24,8 @@ public class ReviewCard extends AppCompatActivity {
         deck = new ArrayList<>();
 
         //get data in background thread and populate the ArrayList here
-        Thread thread = new Thread(new JsonReader(deck));
-        thread.start();
+//        Thread thread = new Thread(new DataHelper(deck));
+//        thread.start();
 
         nextBtn = findViewById(R.id.nextButton);
 
@@ -46,7 +46,7 @@ public class ReviewCard extends AppCompatActivity {
         TextView backText = findViewById(R.id.ReviewBackText);
 
         if(flipped) {
-            frontText.setText(deck.get(0).getFrontText());
+//            frontText.setText(deck.get(0).getTitle());
             backText.setText("");
             nextBtn.setText(R.string.show);
             flipped = false;
@@ -54,7 +54,7 @@ public class ReviewCard extends AppCompatActivity {
         else {
             // populate text fields with data from the
             // next card at this step.
-            backText.setText(deck.get(0).getBackText());
+//            backText.setText(deck.get(0).getDescription());
             nextBtn.setText(R.string.next);
             flipped = true;
         }

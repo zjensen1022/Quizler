@@ -15,4 +15,8 @@
     <string name="view_cards">View Cards</string>
     <string name="review_cards">Review Cards</string>
     <string name="show">Show Answer</string>
+    <string name="add_deck">Add Deck</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="new_deck_name">New Deck Name</string>
 </resources>
