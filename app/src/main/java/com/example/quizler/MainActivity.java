@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         Thread thread = new Thread(() -> DatabaseHelper.loadDecks(this));
         thread.start();
     }
-
     public void addDeck(View view) {
         Intent intent = new Intent(this, AddDeckActivity.class);
         startActivity(intent);

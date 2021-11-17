@@ -32,7 +32,6 @@ public class ReviewCardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_review_card);
 
         flipped = false;
-//        deck = DataHandler.getCards();
 
         frontTextView = findViewById(R.id.ReviewFrontText);
         backTextView = findViewById(R.id.ReviewBackText);
@@ -51,6 +50,10 @@ public class ReviewCardActivity extends AppCompatActivity {
         getOnBackPressedDispatcher().addCallback(callback);
     }
     public void setupReview() {
+        if (deck.size() == 0) {
+            endReview();
+            return;
+        }
         Collections.shuffle(deck);
 
         if(currentIndex < deck.size()) {

@@ -18,7 +18,7 @@ public class DatabaseHelper {
         List<Deck> decks = deckDao.getAll();
         db.close();
         activity.runOnUiThread(() -> {
-            RecyclerView rv = (RecyclerView) activity.findViewById(R.id.rvDecks);
+            RecyclerView rv = activity.findViewById(R.id.rvDecks);
             rv.setLayoutManager(new LinearLayoutManager(activity));
             rv.setAdapter(new DeckListAdapter(decks));
         });
@@ -31,6 +31,18 @@ public class DatabaseHelper {
         deckDao.insertAll(deck);
         db.close();
         activity.finish();
+    }
+    public static void loadCardsForList(int deck_id, CardListActivity activity) {
+        AppDatabase db = Room.databaseBuilder(activity.getApplicationContext(),
+                AppDatabase.class, DB_NAME).build();
+        CardDao cardDao = db.cardDao();
+        List<Card> deck = cardDao.loadAllByDeckId(deck_id);
+        db.close();
+        activity.runOnUiThread(() -> {
+            RecyclerView rv = activity.findViewById(R.id.rvCards);
+            rv.setLayoutManager(new LinearLayoutManager(activity));
+            rv.setAdapter(new CardListAdapter(deck));
+        });
     }
     public static void loadCardsForReview(int deck_id, ReviewCardActivity activity) {
         AppDatabase db = Room.databaseBuilder(activity.getApplicationContext(),
