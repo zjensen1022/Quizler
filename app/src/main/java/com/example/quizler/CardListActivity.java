@@ -19,7 +19,10 @@ public class CardListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_list);
+        createBottomBar();
+    }
 
+    private void createBottomBar() {
         FlexboxLayout bottomBar = findViewById(R.id.cardListBottomBarRef);
         CustomButton editDeck = new CustomButton(bottomBar.getContext());
         editDeck.button.setText("Edit Deck");
@@ -33,7 +36,12 @@ public class CardListActivity extends AppCompatActivity {
         addCardButton.button.setText("Add Card");
         addCardButton.button.setOnClickListener(this::addCard);
         bottomBar.addView(addCardButton);
+    }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
     @Override
