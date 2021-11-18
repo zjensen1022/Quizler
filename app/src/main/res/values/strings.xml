@@ -15,6 +15,14 @@
     <string name="view_cards">View Cards</string>
     <string name="review_cards">Review Cards</string>
     <string name="show">Show Answer</string>
+    <string name="add_card">Add Card</string>
+    <string name="edit_card">Edit Card</string>
+    <string name="edit_card_title">Edit Card Title</string>
+    <string name="new_card_title">New Card Title</string>
+    <string name="card_title">Card Title</string>
+    <string name="edit_card_desc">Edit Card Description</string>
+    <string name="new_card_desc">New Card Description</string>
+    <string name="card_desc">Card Description</string>
     <string name="add_deck">Add Deck</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>

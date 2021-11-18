@@ -10,10 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Quizler">
         <activity
-            android:name=".AddDeckActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".EndReview"
+            android:name=".EndReviewActivity"
             android:exported="false" />
         <activity
             android:name=".CardListActivity"
@@ -22,13 +19,16 @@
             android:name=".ReviewCardActivity"
             android:exported="false" />
         <activity
+            android:name=".AddDeckActivity"
+            android:exported="false"/>
+        <activity
             android:name=".AddCardActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.Quizler.NoActionBar">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

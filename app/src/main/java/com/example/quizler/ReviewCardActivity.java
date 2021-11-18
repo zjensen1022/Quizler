@@ -1,16 +1,20 @@
 package com.example.quizler;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,13 +29,29 @@ public class ReviewCardActivity extends AppCompatActivity {
     private TextView backTextView;
 
     List<Card> deck;
+    static final int EXIT_REVIEW_CODE = 2;
+    static final int REVIEW_AGAIN_CODE = 3;
+    private static String deckName;
+    ActivityResultLauncher<Intent> endReviewActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == EXIT_REVIEW_CODE) {
+                        finish();
+                    }
+                    if (result.getResultCode() == REVIEW_AGAIN_CODE) {
+                        setupReview();
+                    }
+                }
+            }
+    );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_card);
-
-        flipped = false;
+        deckName = getIntent().getStringExtra("deck_name");
 
         frontTextView = findViewById(R.id.ReviewFrontText);
         backTextView = findViewById(R.id.ReviewBackText);
@@ -39,22 +59,27 @@ public class ReviewCardActivity extends AppCompatActivity {
 
         nextBtn.setOnClickListener(this::next);
 
-        Context context = this;
         OnBackPressedCallback callback = new OnBackPressedCallback(true){
             @Override
             public void handleOnBackPressed() {
-                Intent intent = new Intent(context, MainActivity.class);
-                context.startActivity(intent);
+                finish();
             }
         };
         getOnBackPressedDispatcher().addCallback(callback);
     }
     public void setupReview() {
+        flipped = false;
         if (deck.size() == 0) {
             endReview();
             return;
         }
+        backTextView.setVisibility(View.INVISIBLE);
         Collections.shuffle(deck);
+        currentIndex = 0;
+        setTitle(String.format("Card %d out of %d in %s", currentIndex, deck.size(), deckName));
+        backTextView.setVisibility(View.INVISIBLE);
+        backTextView.setText("");
+        nextBtn.setText(R.string.show);
 
         if(currentIndex < deck.size()) {
             currentCard = deck.get(currentIndex);
@@ -95,6 +120,7 @@ public class ReviewCardActivity extends AppCompatActivity {
 
     private void flipCard() {
         backTextView.setText(currentCard.getDescription());
+        backTextView.setVisibility(View.VISIBLE);
         nextBtn.setText(R.string.next);
 
         currentIndex++;
@@ -103,17 +129,20 @@ public class ReviewCardActivity extends AppCompatActivity {
 
     private void displayNext() {
         flipped = false;
+        setTitle(String.format("Card %d out of %d in %s", currentIndex, deck.size(), deckName));
         currentCard = deck.get(currentIndex);
 
         frontTextView.setText(currentCard.getTitle());
+        backTextView.setVisibility(View.INVISIBLE);
         backTextView.setText("");
         nextBtn.setText(R.string.show);
     }
 
     private void endReview() {
-        Intent intent = new Intent(this, EndReview.class);
+        Intent intent = new Intent(this, EndReviewActivity.class);
         intent.putExtra("deck_id", getIntent().getIntExtra("deck_id", 0));
-        startActivity(intent);
+        intent.putExtra("deck_name", getIntent().getStringExtra("deck_name"));
+        endReviewActivityResultLauncher.launch(intent);
     }
 
 }

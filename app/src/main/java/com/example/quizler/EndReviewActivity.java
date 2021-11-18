@@ -10,12 +10,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-public class EndReview extends AppCompatActivity {
+public class EndReviewActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end_review);
+        setTitle(getIntent().getStringExtra("deck_name"));
 
         Button exitBtn = findViewById(R.id.exitReviewButton);
         Button reviewBtn = findViewById(R.id.reviewAgainButton);
@@ -39,12 +40,12 @@ public class EndReview extends AppCompatActivity {
     }
 
     public void exit(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        setResult(ReviewCardActivity.EXIT_REVIEW_CODE);
+        finish();
     }
 
     public void reviewAgain(View view) {
-        Intent intent = new Intent(this, ReviewCardActivity.class);
-        startActivity(intent);
+        setResult(ReviewCardActivity.REVIEW_AGAIN_CODE);
+        finish();
     }
 }
