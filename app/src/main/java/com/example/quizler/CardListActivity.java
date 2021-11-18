@@ -82,7 +82,6 @@ public class CardListActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AddDeckActivity.class);
         intent.putExtra("deck_id", getIntent().getIntExtra("deck_id", 0));
         editDeckActivityResultLauncher.launch(intent);
-//        startActivity(intent);
     }
 
     public void reviewDeck(View view) {

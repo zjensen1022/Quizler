@@ -20,7 +20,7 @@
     <EditText
         android:id="@+id/etLargeValue"
         android:layout_width="0dp"
-        android:layout_height="300dp"
+        android:layout_height="150dp"
         android:layout_marginTop="8dp"
         android:background="@color/offwhite"
         android:ems="10"
