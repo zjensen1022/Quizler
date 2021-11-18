@@ -114,6 +114,7 @@ public class ReviewCardActivity extends AppCompatActivity {
 
     private void flipCard() {
         backTextView.setText(currentCard.getDescription());
+        backTextView.setVisibility(View.VISIBLE);
         nextBtn.setText(R.string.next);
 
         currentIndex++;
@@ -125,6 +126,7 @@ public class ReviewCardActivity extends AppCompatActivity {
         currentCard = deck.get(currentIndex);
 
         frontTextView.setText(currentCard.getTitle());
+        backTextView.setVisibility(View.INVISIBLE);
         backTextView.setText("");
         nextBtn.setText(R.string.show);
     }
