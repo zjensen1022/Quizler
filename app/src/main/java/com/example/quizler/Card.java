@@ -16,6 +16,11 @@ public class Card {
     @ColumnInfo(name = "deck_id")
     public int deckId;
 
+    public Card(String title, String description, int cardId) {
+        this(title, description);
+        id = cardId;
+    }
+
 
     public Card(String title, String description) {
         this.title = title;
