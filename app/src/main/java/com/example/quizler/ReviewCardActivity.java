@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -111,7 +110,7 @@ public class ReviewCardActivity extends AppCompatActivity {
     }
 
     private void endReview() {
-        Intent intent = new Intent(this, EndReview.class);
+        Intent intent = new Intent(this, EndReviewActivity.class);
         intent.putExtra("deck_id", getIntent().getIntExtra("deck_id", 0));
         startActivity(intent);
     }

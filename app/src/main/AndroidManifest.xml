@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Quizler">
         <activity
-            android:name=".EndReview"
+            android:name=".EndReviewActivity"
             android:exported="false" />
         <activity
             android:name=".CardListActivity"
