@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Intent intent;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,19 +36,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Thread thread = new Thread(() -> DatabaseHelper.loadDecks(this));
-        thread.start();
+        Thread getNewData = new Thread(() -> DatabaseHelper.loadDecksForMain(this));
+        getNewData.start();
     }
     public void addDeck(View view) {
         Intent intent = new Intent(this, AddDeckActivity.class);
         startActivity(intent);
-    }
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        // Start a new thread to load Json data right
-        // as the application launches.
-        DataHandler.loadFromJson();
     }
 }
