@@ -34,6 +34,11 @@ public class AddDeckActivity extends AppCompatActivity {
         if(isEdit && !hasRunningThreads()) {
             getDeckForUpdate.start();
         }
+        if (isEdit) {
+            setTitle(R.string.add_deck);
+        } else {
+            setTitle(R.string.edit_deck);
+        }
         setupBottomBar();
         setupFieldNames();
     }

@@ -35,6 +35,7 @@ public class DeckListAdapter extends RecyclerView.Adapter {
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), CardListActivity.class);
                 intent.putExtra("deck_id", deck.id);
+                intent.putExtra("deck_name", deck.name);
                 view.getContext().startActivity(intent);
             }
         });

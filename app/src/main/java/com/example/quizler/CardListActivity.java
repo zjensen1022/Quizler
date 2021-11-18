@@ -19,6 +19,7 @@ public class CardListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_list);
+        setTitle(getIntent().getStringExtra("deck_name"));
         createBottomBar();
     }
 

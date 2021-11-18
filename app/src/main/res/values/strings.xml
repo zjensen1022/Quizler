@@ -21,6 +21,7 @@
     <string name="delete">Delete</string>
     <string name="new_deck_name">New Deck Name</string>
     <string name="edit_deck_name">Edit Deck Name</string>
+    <string name="edit_deck">Edit Deck</string>
     <string name="deck_name">Deck Name</string>
     <string name="no_more_cards">Finished reviewing all cards in deck, would you like to review them again?</string>
     <string name="review_again">Review Again</string>
