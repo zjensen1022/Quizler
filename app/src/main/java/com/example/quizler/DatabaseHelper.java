@@ -48,6 +48,7 @@ public class DatabaseHelper {
         DeckDao deckDao = db.deckDao();
         deckDao.update(deck);
         db.close();
+        activity.setResult(Activity.RESULT_OK);
         activity.finish();
     }
     public static void deleteDeck(Deck deck, AddDeckActivity activity) {
@@ -55,9 +56,8 @@ public class DatabaseHelper {
         DeckDao deckDao = db.deckDao();
         deckDao.delete(deck);
         db.close();
-        Activity parent = activity.getParent();
+        activity.setResult(Activity.RESULT_OK);
         activity.finish();
-        parent.finish();
     }
     public static void loadCardsForList(int deck_id, CardListActivity activity) {
         AppDatabase db = createDB(activity);
@@ -76,5 +76,37 @@ public class DatabaseHelper {
         activity.deck = cardDao.loadAllByDeckId(deck_id);
         activity.setupReview();
         db.close();
+    }
+    public static void getSingleCardForEdit(int cardId, AddCardActivity activity) {
+        AppDatabase db = createDB(activity);
+        CardDao cardDao = db.cardDao();
+        activity.currentCard = cardDao.findById(cardId);
+        db.close();
+        activity.runOnUiThread(() -> {
+            activity.displayCardData();
+        });
+    }
+    public static void saveCard(Card card, AddCardActivity activity) {
+        AppDatabase db = createDB(activity);
+        CardDao cardDao = db.cardDao();
+        cardDao.insertAll(card);
+        db.close();
+        activity.finish();
+    }
+    public static void updateCard(Card card, AddCardActivity activity) {
+        AppDatabase db = createDB(activity);
+        CardDao cardDao = db.cardDao();
+        cardDao.update(card);
+        db.close();
+        activity.finish();
+    }
+    public static void deleteCard(Card card, AddCardActivity activity) {
+        AppDatabase db = createDB(activity);
+        CardDao cardDao = db.cardDao();
+        cardDao.delete(card);
+        db.close();
+//        Activity parent = activity.getParent();
+        activity.finish();
+//        parent.finish();
     }
 }

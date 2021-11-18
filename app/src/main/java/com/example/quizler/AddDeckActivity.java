@@ -5,6 +5,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -35,9 +36,9 @@ public class AddDeckActivity extends AppCompatActivity {
             getDeckForUpdate.start();
         }
         if (isEdit) {
-            setTitle(R.string.add_deck);
-        } else {
             setTitle(R.string.edit_deck);
+        } else {
+            setTitle(R.string.add_deck);
         }
         setupBottomBar();
         setupFieldNames();
@@ -69,14 +70,15 @@ public class AddDeckActivity extends AppCompatActivity {
         input = findViewById(R.id.etValue);
         if (isEdit) {
             inputLabel.setText(R.string.edit_deck_name);
-            input.setHint(R.string.deck_name);
         }
         else {
             inputLabel.setText(R.string.new_deck_name);
-            input.setHint(R.string.new_deck_name);
         }
+        input.setHint(R.string.deck_name);
     }
 
+    // Ensures that we don't have any threads running to keep from running
+    // two conflicting tasks at the same time.
     public boolean hasRunningThreads() {
         return getDeckForUpdate.isAlive()
                 || saveDeck.isAlive()
@@ -89,6 +91,7 @@ public class AddDeckActivity extends AppCompatActivity {
     }
     public void cancelButton(View view) {
         if (hasRunningThreads()) return;
+        setResult(RESULT_CANCELED);
         finish();
     }
     public void deleteButton(View view) {

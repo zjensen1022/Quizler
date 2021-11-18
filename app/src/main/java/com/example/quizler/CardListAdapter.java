@@ -21,7 +21,7 @@ public class CardListAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = (View) LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_deck, parent, false);
+        View v = (View) LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_flashcard, parent, false);
         return new ViewHolder(v);
     }
 
@@ -36,6 +36,7 @@ public class CardListAdapter extends RecyclerView.Adapter {
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), AddCardActivity.class);
                 intent.putExtra("card_id", card.id);
+                intent.putExtra("deck_id", card.deckId);
                 view.getContext().startActivity(intent);
             }
         });

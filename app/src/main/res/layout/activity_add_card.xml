@@ -6,42 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".AddCardActivity">
 
-    <EditText
-        android:id="@+id/FrontText"
+    <include
+        android:id="@+id/addCardBottomBar"
+        layout="@layout/bottom_bar"
         android:layout_width="0dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:hint="@string/hint_front"
-        android:inputType="textMultiLine"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <include
+        android:id="@+id/addCardTitleInput"
+        layout="@layout/text_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/BackText"
+    <include
+        android:id="@+id/addCardLargeInput"
+        layout="@layout/large_text_input"
         android:layout_width="0dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:hint="@string/back_hint"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FrontText" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/create_card"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BackText" />
+        app:layout_constraintTop_toBottomOf="@+id/addCardTitleInput" />
 </androidx.constraintlayout.widget.ConstraintLayout>
