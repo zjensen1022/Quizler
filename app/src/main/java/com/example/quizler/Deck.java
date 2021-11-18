@@ -2,6 +2,7 @@ package com.example.quizler;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.util.ArrayList;
@@ -14,12 +15,13 @@ public class Deck {
     @ColumnInfo(name = "deck_name")
     public String name;
 
+    public Deck(String name) {
+        this.name = name;
+    }
+
+    @Ignore
     public Deck (String name, int id) {
         this(name);
         this.id = id;
-    }
-
-    public Deck(String name) {
-        this.name = name;
     }
 }
