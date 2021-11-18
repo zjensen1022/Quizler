@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -23,6 +24,9 @@ public interface DeckDao {
 
     @Query("SELECT COUNT(*) FROM card WHERE deck_id IS :deckId")
     int getCardCount(int deckId);
+
+    @Update
+    void update(Deck deck);
 
     @Insert
     void insertAll(Deck... decks);

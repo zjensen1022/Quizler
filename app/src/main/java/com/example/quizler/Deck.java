@@ -14,6 +14,11 @@ public class Deck {
     @ColumnInfo(name = "deck_name")
     public String name;
 
+    public Deck (String name, int id) {
+        this(name);
+        this.id = id;
+    }
+
     public Deck(String name) {
         this.name = name;
     }
