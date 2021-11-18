@@ -87,6 +87,7 @@ public class CardListActivity extends AppCompatActivity {
     public void reviewDeck(View view) {
         Intent intent = new Intent(this, ReviewCardActivity.class);
         intent.putExtra("deck_id", getIntent().getIntExtra("deck_id", 0));
+        intent.putExtra("deck_name", getIntent().getStringExtra("deck_name"));
         startActivity(intent);
     }
 }

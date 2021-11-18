@@ -16,6 +16,7 @@ public class EndReviewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end_review);
+        setTitle(getIntent().getStringExtra("deck_name"));
 
         Button exitBtn = findViewById(R.id.exitReviewButton);
         Button reviewBtn = findViewById(R.id.reviewAgainButton);

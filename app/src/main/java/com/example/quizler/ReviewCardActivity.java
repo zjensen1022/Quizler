@@ -31,6 +31,7 @@ public class ReviewCardActivity extends AppCompatActivity {
     List<Card> deck;
     static final int EXIT_REVIEW_CODE = 2;
     static final int REVIEW_AGAIN_CODE = 3;
+    private static String deckName;
     ActivityResultLauncher<Intent> endReviewActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
@@ -50,7 +51,7 @@ public class ReviewCardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_card);
-
+        deckName = getIntent().getStringExtra("deck_name");
 
         frontTextView = findViewById(R.id.ReviewFrontText);
         backTextView = findViewById(R.id.ReviewBackText);
@@ -72,8 +73,13 @@ public class ReviewCardActivity extends AppCompatActivity {
             endReview();
             return;
         }
+        backTextView.setVisibility(View.INVISIBLE);
         Collections.shuffle(deck);
         currentIndex = 0;
+        setTitle(String.format("Card %d out of %d in %s", currentIndex, deck.size(), deckName));
+        backTextView.setVisibility(View.INVISIBLE);
+        backTextView.setText("");
+        nextBtn.setText(R.string.show);
 
         if(currentIndex < deck.size()) {
             currentCard = deck.get(currentIndex);
@@ -123,6 +129,7 @@ public class ReviewCardActivity extends AppCompatActivity {
 
     private void displayNext() {
         flipped = false;
+        setTitle(String.format("Card %d out of %d in %s", currentIndex, deck.size(), deckName));
         currentCard = deck.get(currentIndex);
 
         frontTextView.setText(currentCard.getTitle());
@@ -134,6 +141,7 @@ public class ReviewCardActivity extends AppCompatActivity {
     private void endReview() {
         Intent intent = new Intent(this, EndReviewActivity.class);
         intent.putExtra("deck_id", getIntent().getIntExtra("deck_id", 0));
+        intent.putExtra("deck_name", getIntent().getStringExtra("deck_name"));
         endReviewActivityResultLauncher.launch(intent);
     }
 

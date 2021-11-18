@@ -74,7 +74,9 @@ public class DatabaseHelper {
         AppDatabase db = createDB(activity);
         CardDao cardDao = db.cardDao();
         activity.deck = cardDao.loadAllByDeckId(deck_id);
-        activity.setupReview();
+        activity.runOnUiThread(() -> {
+            activity.setupReview();
+        });
         db.close();
     }
     public static void getSingleCardForEdit(int cardId, AddCardActivity activity) {
