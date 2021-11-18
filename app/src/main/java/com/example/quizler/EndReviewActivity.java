@@ -39,12 +39,12 @@ public class EndReviewActivity extends AppCompatActivity {
     }
 
     public void exit(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        setResult(ReviewCardActivity.EXIT_REVIEW_CODE);
+        finish();
     }
 
     public void reviewAgain(View view) {
-        Intent intent = new Intent(this, ReviewCardActivity.class);
-        startActivity(intent);
+        setResult(ReviewCardActivity.REVIEW_AGAIN_CODE);
+        finish();
     }
 }

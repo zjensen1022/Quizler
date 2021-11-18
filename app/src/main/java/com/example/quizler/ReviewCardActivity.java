@@ -1,11 +1,16 @@
 package com.example.quizler;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,13 +29,28 @@ public class ReviewCardActivity extends AppCompatActivity {
     private TextView backTextView;
 
     List<Card> deck;
+    static final int EXIT_REVIEW_CODE = 2;
+    static final int REVIEW_AGAIN_CODE = 3;
+    ActivityResultLauncher<Intent> endReviewActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == EXIT_REVIEW_CODE) {
+                        finish();
+                    }
+                    if (result.getResultCode() == REVIEW_AGAIN_CODE) {
+                        setupReview();
+                    }
+                }
+            }
+    );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_card);
 
-        flipped = false;
 
         frontTextView = findViewById(R.id.ReviewFrontText);
         backTextView = findViewById(R.id.ReviewBackText);
@@ -38,22 +58,22 @@ public class ReviewCardActivity extends AppCompatActivity {
 
         nextBtn.setOnClickListener(this::next);
 
-        Context context = this;
         OnBackPressedCallback callback = new OnBackPressedCallback(true){
             @Override
             public void handleOnBackPressed() {
-                Intent intent = new Intent(context, MainActivity.class);
-                context.startActivity(intent);
+                finish();
             }
         };
         getOnBackPressedDispatcher().addCallback(callback);
     }
     public void setupReview() {
+        flipped = false;
         if (deck.size() == 0) {
             endReview();
             return;
         }
         Collections.shuffle(deck);
+        currentIndex = 0;
 
         if(currentIndex < deck.size()) {
             currentCard = deck.get(currentIndex);
@@ -112,7 +132,7 @@ public class ReviewCardActivity extends AppCompatActivity {
     private void endReview() {
         Intent intent = new Intent(this, EndReviewActivity.class);
         intent.putExtra("deck_id", getIntent().getIntExtra("deck_id", 0));
-        startActivity(intent);
+        endReviewActivityResultLauncher.launch(intent);
     }
 
 }
