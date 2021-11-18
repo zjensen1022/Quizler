@@ -44,7 +44,7 @@ public class EndReview extends AppCompatActivity {
     }
 
     public void reviewAgain(View view) {
-        Intent intent = new Intent(this, ReviewCard.class);
+        Intent intent = new Intent(this, ReviewCardActivity.class);
         startActivity(intent);
     }
 }

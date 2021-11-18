@@ -1,20 +1,32 @@
 package com.example.quizler;
 
+
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Card {
+    @PrimaryKey(autoGenerate = true)
+    public int id;
+    @ColumnInfo(name = "card_title")
+    public String title;
+    @ColumnInfo(name = "card_description")
+    public String description;
+    @ColumnInfo(name = "deck_id")
+    public int deckId;
 
-    String frontText;
-    String backText;
 
-    public Card(String frontText, String backText) {
-        this.frontText = frontText;
-        this.backText = backText;
+    public Card(String title, String description) {
+        this.title = title;
+        this.description = description;
     }
 
-    public String getFrontText() {
-        return frontText;
+    public String getTitle() {
+        return title;
     }
 
-    public String getBackText() {
-        return backText;
+    public String getDescription() {
+        return description;
     }
 }

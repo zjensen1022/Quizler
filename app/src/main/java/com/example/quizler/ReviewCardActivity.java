@@ -12,8 +12,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
-public class ReviewCard extends AppCompatActivity {
+public class ReviewCardActivity extends AppCompatActivity {
 
     private boolean flipped; // tracks whether the answer has been revealed.
     private int currentIndex; // index of current card being reviewed
@@ -23,7 +24,7 @@ public class ReviewCard extends AppCompatActivity {
     private TextView frontTextView;
     private TextView backTextView;
 
-    ArrayList<Card> deck;
+    List<Card> deck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,6 @@ public class ReviewCard extends AppCompatActivity {
         setContentView(R.layout.activity_review_card);
 
         flipped = false;
-        deck = DataHandler.getCards();
 
         frontTextView = findViewById(R.id.ReviewFrontText);
         backTextView = findViewById(R.id.ReviewBackText);
@@ -39,26 +39,38 @@ public class ReviewCard extends AppCompatActivity {
 
         nextBtn.setOnClickListener(this::next);
 
-        Collections.shuffle(deck);
-
-        if(currentIndex < deck.size()) {
-            currentCard = deck.get(currentIndex);
-
-            frontTextView.setText(currentCard.getFrontText());
-        }
-
         Context context = this;
-
         OnBackPressedCallback callback = new OnBackPressedCallback(true){
-
             @Override
             public void handleOnBackPressed() {
                 Intent intent = new Intent(context, MainActivity.class);
                 context.startActivity(intent);
             }
         };
-
         getOnBackPressedDispatcher().addCallback(callback);
+    }
+    public void setupReview() {
+        if (deck.size() == 0) {
+            endReview();
+            return;
+        }
+        Collections.shuffle(deck);
+
+        if(currentIndex < deck.size()) {
+            currentCard = deck.get(currentIndex);
+
+            frontTextView.setText(currentCard.getTitle());
+        }
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent intent = getIntent();
+        int deckId = intent.getIntExtra("deck_id", 0);
+        Thread thread = new Thread(() -> DatabaseHelper.loadCardsForReview(deckId, this));
+        thread.start();
     }
 
     /**
@@ -69,7 +81,6 @@ public class ReviewCard extends AppCompatActivity {
      * @param view
      */
     public void next(View view) {
-
         if(currentIndex < deck.size()) {
             if(flipped)
                 displayNext();
@@ -83,7 +94,7 @@ public class ReviewCard extends AppCompatActivity {
     }
 
     private void flipCard() {
-        backTextView.setText(currentCard.getBackText());
+        backTextView.setText(currentCard.getDescription());
         nextBtn.setText(R.string.next);
 
         currentIndex++;
@@ -94,13 +105,14 @@ public class ReviewCard extends AppCompatActivity {
         flipped = false;
         currentCard = deck.get(currentIndex);
 
-        frontTextView.setText(currentCard.getFrontText());
+        frontTextView.setText(currentCard.getTitle());
         backTextView.setText("");
         nextBtn.setText(R.string.show);
     }
 
     private void endReview() {
         Intent intent = new Intent(this, EndReview.class);
+        intent.putExtra("deck_id", getIntent().getIntExtra("deck_id", 0));
         startActivity(intent);
     }
 
