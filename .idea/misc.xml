@@ -3,38 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Zac/AndroidStudioProjects/Quizler/app/src/main/res/drawable/delete_button.xml" value="0.3769230769230769" />
+        <entry key="..\:/Users/Zac/AndroidStudioProjects/Quizler/app/src/main/res/drawable/ic_baseline_add_42.xml" value="0.3769230769230769" />
+        <entry key="..\:/Users/Zac/AndroidStudioProjects/Quizler/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3769230769230769" />
+        <entry key="..\:/Users/Zac/AndroidStudioProjects/Quizler/app/src/main/res/drawable/rectangle.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/Zac/AndroidStudioProjects/Quizler/app/src/main/res/layout/activity_add_card.xml" value="0.24094202898550723" />
+        <entry key="..\:/Users/Zac/AndroidStudioProjects/Quizler/app/src/main/res/layout/activity_add_deck.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Zac/AndroidStudioProjects/Quizler/app/src/main/res/layout/activity_card_list.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Zac/AndroidStudioProjects/Quizler/app/src/main/res/layout/activity_end_review.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Zac/AndroidStudioProjects/Quizler/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/Zac/AndroidStudioProjects/Quizler/app/src/main/res/layout/activity_review_card.xml" value="0.33" />
+        <entry key="..\:/Users/Zac/AndroidStudioProjects/Quizler/app/src/main/res/layout/bottom_bar.xml" value="0.2708333333333333" />
+        <entry key="..\:/Users/Zac/AndroidStudioProjects/Quizler/app/src/main/res/layout/bottom_bar_item.xml" value="0.2708333333333333" />
+        <entry key="..\:/Users/Zac/AndroidStudioProjects/Quizler/app/src/main/res/layout/button.xml" value="0.24954710144927536" />
         <entry key="..\:/Users/Zac/AndroidStudioProjects/Quizler/app/src/main/res/layout/content_main.xml" value="0.28306159420289856" />
+        <entry key="..\:/Users/Zac/AndroidStudioProjects/Quizler/app/src/main/res/layout/delete_button.xml" value="0.24954710144927536" />
         <entry key="..\:/Users/Zac/AndroidStudioProjects/Quizler/app/src/main/res/layout/fragment_first.xml" value="0.28306159420289856" />
         <entry key="..\:/Users/Zac/AndroidStudioProjects/Quizler/app/src/main/res/layout/fragment_second.xml" value="0.28306159420289856" />
-        <entry key="..\:/Users/levih/AndroidStudioProjects/Quizler/app/src/main/res/drawable/ic__plus.xml" value="0.18888888888888888" />
-        <entry key="..\:/Users/levih/AndroidStudioProjects/Quizler/app/src/main/res/drawable/ic_baseline_add_42.xml" value="0.18888888888888888" />
-        <entry key="..\:/Users/levih/AndroidStudioProjects/Quizler/app/src/main/res/drawable/rectangle.xml" value="0.18888888888888888" />
-        <entry key="..\:/Users/levih/AndroidStudioProjects/Quizler/app/src/main/res/layout/activity_add_card.xml" value="0.16" />
-        <entry key="..\:/Users/levih/AndroidStudioProjects/Quizler/app/src/main/res/layout/activity_add_deck.xml" value="0.2" />
-        <entry key="..\:/Users/levih/AndroidStudioProjects/Quizler/app/src/main/res/layout/activity_card_list.xml" value="0.26992753623188404" />
-        <entry key="..\:/Users/levih/AndroidStudioProjects/Quizler/app/src/main/res/layout/activity_end_review.xml" value="0.18" />
-        <entry key="..\:/Users/levih/AndroidStudioProjects/Quizler/app/src/main/res/layout/activity_main.xml" value="0.2651975683890577" />
-        <entry key="..\:/Users/levih/AndroidStudioProjects/Quizler/app/src/main/res/layout/activity_review_card.xml" value="0.25" />
-        <entry key="..\:/Users/levih/AndroidStudioProjects/Quizler/app/src/main/res/layout/bottom_bar.xml" value="0.2651975683890577" />
-        <entry key="..\:/Users/levih/AndroidStudioProjects/Quizler/app/src/main/res/layout/bottom_bar_item.xml" value="0.9" />
-        <entry key="..\:/Users/levih/AndroidStudioProjects/Quizler/app/src/main/res/layout/button.xml" value="0.26992753623188404" />
-        <entry key="..\:/Users/levih/AndroidStudioProjects/Quizler/app/src/main/res/layout/content_main.xml" value="0.2651975683890577" />
-        <entry key="..\:/Users/levih/AndroidStudioProjects/Quizler/app/src/main/res/layout/fragment_card_list_item.xml" value="0.2672239108409321" />
-        <entry key="..\:/Users/levih/AndroidStudioProjects/Quizler/app/src/main/res/layout/fragment_first.xml" value="0.2651975683890577" />
-        <entry key="..\:/Users/levih/AndroidStudioProjects/Quizler/app/src/main/res/layout/fragment_second.xml" value="0.2651975683890577" />
-        <entry key="..\:/Users/levih/AndroidStudioProjects/Quizler/app/src/main/res/layout/large_text_input.xml" value="0.26992753623188404" />
-        <entry key="..\:/Users/levih/AndroidStudioProjects/Quizler/app/src/main/res/layout/list_item.xml" value="0.33" />
-        <entry key="..\:/Users/levih/AndroidStudioProjects/Quizler/app/src/main/res/layout/list_item_deck.xml" value="0.2651975683890577" />
-        <entry key="..\:/Users/levih/AndroidStudioProjects/Quizler/app/src/main/res/layout/list_item_flashcard.xml" value="0.33" />
-        <entry key="..\:/Users/levih/AndroidStudioProjects/Quizler/app/src/main/res/layout/sample_list_item.xml" value="0.328125" />
-        <entry key="..\:/Users/levih/AndroidStudioProjects/Quizler/app/src/main/res/layout/text_input.xml" value="0.26992753623188404" />
+        <entry key="..\:/Users/Zac/AndroidStudioProjects/Quizler/app/src/main/res/layout/list_item_deck.xml" value="0.24954710144927536" />
+        <entry key="..\:/Users/Zac/AndroidStudioProjects/Quizler/app/src/main/res/layout/list_item_flashcard.xml" value="0.24954710144927536" />
+        <entry key="..\:/Users/Zac/AndroidStudioProjects/Quizler/app/src/main/res/menu/menu_main.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
