@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 public class ReviewCardActivity extends AppCompatActivity {
 
@@ -76,7 +77,7 @@ public class ReviewCardActivity extends AppCompatActivity {
         backTextView.setVisibility(View.INVISIBLE);
         Collections.shuffle(deck);
         currentIndex = 0;
-        setTitle(String.format("Card %d out of %d in %s", currentIndex, deck.size(), deckName));
+        setTitle(String.format(Locale.US,"Card %d out of %d in %s", currentIndex + 1, deck.size(), deckName));
         backTextView.setVisibility(View.INVISIBLE);
         backTextView.setText("");
         nextBtn.setText(R.string.show);
