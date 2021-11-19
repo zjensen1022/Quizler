@@ -52,7 +52,7 @@ public class AddCardActivity extends AppCompatActivity {
         bottomBar.addView(saveButton);
         bottomBar.addView(cancelButton);
         if (isEdit) {
-            CustomButton deleteButton = new CustomButton(bottomBar.getContext());
+            CustomButton deleteButton = new DeleteButton(bottomBar.getContext());
             deleteButton.button.setText(R.string.delete);
             deleteButton.button.setOnClickListener(this::deleteButton);
             bottomBar.addView(deleteButton);

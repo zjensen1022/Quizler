@@ -10,7 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class CustomButton extends ConstraintLayout {
     Button button;
-    private void initCustomButton() {
+    protected void initCustomButton() {
         inflate(getContext(), R.layout.button, this);
         button = this.findViewById(R.id.customButton);
     }

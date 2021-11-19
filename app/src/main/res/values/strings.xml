@@ -36,4 +36,6 @@
     <string name="exit_review">Exit Review</string>
     <string name="add">Add</string>
     <string name="review">Review</string>
+    <string name="delete_deck_question">Are you sure you want to delete the deck and all of its cards?
+    this action cannot be undone.</string>
 </resources>
