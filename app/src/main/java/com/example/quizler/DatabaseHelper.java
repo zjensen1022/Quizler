@@ -30,9 +30,7 @@ public class DatabaseHelper {
         DeckDao deckDao = db.deckDao();
         activity.currentDeck = deckDao.findById(deckId);
         db.close();
-        activity.runOnUiThread(() -> {
-            activity.displayDeckData();
-        });
+        activity.runOnUiThread(activity::displayDeckData);
     }
     public static void saveDeck(String deckName, AddDeckActivity activity) {
         AppDatabase db = createDB(activity);
@@ -73,9 +71,7 @@ public class DatabaseHelper {
         AppDatabase db = createDB(activity);
         CardDao cardDao = db.cardDao();
         activity.deck = cardDao.loadAllByDeckId(deck_id);
-        activity.runOnUiThread(() -> {
-            activity.setupReview();
-        });
+        activity.runOnUiThread(activity::setupReview);
         db.close();
     }
     public static void getSingleCardForEdit(int cardId, AddCardActivity activity) {
@@ -83,9 +79,7 @@ public class DatabaseHelper {
         CardDao cardDao = db.cardDao();
         activity.currentCard = cardDao.findById(cardId);
         db.close();
-        activity.runOnUiThread(() -> {
-            activity.displayCardData();
-        });
+        activity.runOnUiThread(activity::displayCardData);
     }
     public static void saveCard(Card card, AddCardActivity activity) {
         AppDatabase db = createDB(activity);
