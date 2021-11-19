@@ -106,8 +106,6 @@ public class DatabaseHelper {
         CardDao cardDao = db.cardDao();
         cardDao.delete(card);
         db.close();
-        Activity parent = activity.getParent();
         activity.finish();
-        parent.finish();
     }
 }
