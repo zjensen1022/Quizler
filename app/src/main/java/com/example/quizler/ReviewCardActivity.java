@@ -1,19 +1,17 @@
 package com.example.quizler;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
 import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import java.util.Collections;
 import java.util.List;
@@ -130,7 +128,7 @@ public class ReviewCardActivity extends AppCompatActivity {
 
     private void displayNext() {
         flipped = false;
-        setTitle(String.format("Card %d out of %d in %s", currentIndex, deck.size(), deckName));
+        setTitle(String.format(Locale.US,"Card %d out of %d in %s", currentIndex + 1, deck.size(), deckName));
         currentCard = deck.get(currentIndex);
 
         frontTextView.setText(currentCard.getTitle());

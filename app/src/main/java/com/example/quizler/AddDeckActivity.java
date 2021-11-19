@@ -1,30 +1,27 @@
 package com.example.quizler;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.quizler.databinding.ActivityAddDeckBinding;
-import com.example.quizler.databinding.ActivityMainBinding;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.flexbox.FlexboxLayout;
 
 public class AddDeckActivity extends AppCompatActivity {
 
+    private static final String TAG = "AddDeckActivity";
     private EditText input;
     private boolean isEdit;
     public Deck currentDeck;
     final int DEFAULT_DECK_ID = -1;
     private int deckId = DEFAULT_DECK_ID;
-    private Thread getDeckForUpdate = new Thread(() -> DatabaseHelper.getSingleDeck(deckId, this));
-    private Thread saveDeck = new Thread(() -> DatabaseHelper.saveDeck(input.getText().toString(), this));
-    private Thread updateDeck = new Thread(() -> DatabaseHelper.updateDeck(currentDeck, this));
-    private Thread deleteDeck = new Thread(() -> DatabaseHelper.deleteDeck(currentDeck, this));
+    private final Thread getDeckForUpdate = new Thread(() -> DatabaseHelper.getSingleDeck(deckId, this));
+    private final Thread saveDeck = new Thread(() -> DatabaseHelper.saveDeck(input.getText().toString(), this));
+    private final Thread updateDeck = new Thread(() -> DatabaseHelper.updateDeck(currentDeck, this));
+    private final Thread deleteDeck = new Thread(() -> DatabaseHelper.deleteDeck(currentDeck, this));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +94,7 @@ public class AddDeckActivity extends AppCompatActivity {
     public void deleteButton(View view) {
         if (hasRunningThreads()) return;
         deleteDeck.start();
+        Log.d(TAG, "deleting deck");
     }
     public void saveButton(View view) {
         if (hasRunningThreads()) return;

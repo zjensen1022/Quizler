@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
-import java.util.Collections;
 import java.util.List;
 
 public class DatabaseHelper {
@@ -107,8 +106,8 @@ public class DatabaseHelper {
         CardDao cardDao = db.cardDao();
         cardDao.delete(card);
         db.close();
-//        Activity parent = activity.getParent();
+        Activity parent = activity.getParent();
         activity.finish();
-//        parent.finish();
+        parent.finish();
     }
 }

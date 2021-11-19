@@ -1,25 +1,20 @@
 package com.example.quizler;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 
 import com.google.android.flexbox.FlexboxLayout;
 
-import java.util.List;
-
 public class CardListActivity extends AppCompatActivity {
 
+    public static final String TAG = "CardListActivity";
     private AppDatabase db;
     // Handles whether or not deck was edited
     ActivityResultLauncher<Intent> editDeckActivityResultLauncher = registerForActivityResult(

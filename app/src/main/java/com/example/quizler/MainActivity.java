@@ -2,17 +2,11 @@ package com.example.quizler;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
-
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.quizler.databinding.ActivityMainBinding;
 import com.google.android.flexbox.FlexboxLayout;
-
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
