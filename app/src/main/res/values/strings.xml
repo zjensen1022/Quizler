@@ -40,4 +40,5 @@
     this action cannot be undone.</string>
     <string name="delete_deck">Delete Deck</string>
     <string name="button">Button</string>
+    <string name="no_cards_message">No cards in deck to review</string>
 </resources>
