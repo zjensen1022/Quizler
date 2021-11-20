@@ -30,8 +30,10 @@ public class CustomButton extends ConstraintLayout {
         initCustomButton();
     }
 
+    /*
     public CustomButton(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         initCustomButton();
     }
+     */
 }

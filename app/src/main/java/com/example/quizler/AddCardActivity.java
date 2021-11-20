@@ -18,10 +18,10 @@ public class AddCardActivity extends AppCompatActivity {
     final int DEFAULT_CARD_ID = -1;
     private int cardId = DEFAULT_CARD_ID;
     private int deckId = DEFAULT_CARD_ID;
-    private Thread getCardForUpdate = new Thread(() -> DatabaseHelper.getSingleCardForEdit(cardId, this));
-    private Thread saveCard = new Thread(() -> DatabaseHelper.saveCard(currentCard, this));
-    private Thread updateCard = new Thread(() -> DatabaseHelper.updateCard(currentCard, this));
-    private Thread deleteCard = new Thread(() -> DatabaseHelper.deleteCard(currentCard, this));
+    private final Thread getCardForUpdate = new Thread(() -> DatabaseHelper.getSingleCardForEdit(cardId, this));
+    private final Thread saveCard = new Thread(() -> DatabaseHelper.saveCard(currentCard, this));
+    private final Thread updateCard = new Thread(() -> DatabaseHelper.updateCard(currentCard, this));
+    private final Thread deleteCard = new Thread(() -> DatabaseHelper.deleteCard(currentCard, this));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

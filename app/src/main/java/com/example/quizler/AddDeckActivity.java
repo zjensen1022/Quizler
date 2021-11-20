@@ -1,7 +1,5 @@
 package com.example.quizler;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -14,7 +12,6 @@ import com.google.android.flexbox.FlexboxLayout;
 
 public class AddDeckActivity extends AppCompatActivity {
 
-    private static final String TAG = "AddDeckActivity";
     private EditText input;
     private boolean isEdit;
     public Deck currentDeck;
@@ -95,7 +92,7 @@ public class AddDeckActivity extends AppCompatActivity {
     }
     public void deleteButton(View view) {
         if (hasRunningThreads()) return;
-        getDeleteDialog().show();
+        generateDeleteDialog().show();
     }
     public void saveButton(View view) {
         if (hasRunningThreads()) return;
@@ -107,12 +104,14 @@ public class AddDeckActivity extends AppCompatActivity {
         }
     }
 
-    private AlertDialog getDeleteDialog() {
+    private AlertDialog generateDeleteDialog() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Delete Deck");
+
+        builder.setTitle(R.string.delete_deck);
         builder.setMessage(R.string.delete_deck_question);
         builder.setCancelable(true);
+
         builder.setPositiveButton(
                 R.string.delete,
                 (dialogInterface, i) -> {
@@ -122,9 +121,7 @@ public class AddDeckActivity extends AppCompatActivity {
 
         builder.setNegativeButton(
                 R.string.cancel,
-                ((dialogInterface, i) -> {
-                    dialogInterface.cancel();
-                })
+                ((dialogInterface, i) -> dialogInterface.cancel())
         );
 
         return builder.create();

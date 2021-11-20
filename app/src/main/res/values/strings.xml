@@ -38,4 +38,6 @@
     <string name="review">Review</string>
     <string name="delete_deck_question">Are you sure you want to delete the deck and all of its cards?
     this action cannot be undone.</string>
+    <string name="delete_deck">Delete Deck</string>
+    <string name="button">Button</string>
 </resources>

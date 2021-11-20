@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class CardListAdapter extends RecyclerView.Adapter {
-    private List<Card> cards;
+    private final List<Card> cards;
 
     public CardListAdapter(List<Card> cards) {
         this.cards = cards;
@@ -31,14 +31,11 @@ public class CardListAdapter extends RecyclerView.Adapter {
         ViewHolder vh = (ViewHolder) holder;
         vh.cardTitle.setText(card.title);
         vh.cardDescription.setText(card.description);
-        vh.view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), AddCardActivity.class);
-                intent.putExtra("card_id", card.id);
-                intent.putExtra("deck_id", card.deckId);
-                view.getContext().startActivity(intent);
-            }
+        vh.view.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), AddCardActivity.class);
+            intent.putExtra("card_id", card.id);
+            intent.putExtra("deck_id", card.deckId);
+            view.getContext().startActivity(intent);
         });
     }
 
