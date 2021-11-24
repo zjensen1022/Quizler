@@ -41,4 +41,6 @@
     <string name="delete_deck">Delete Deck</string>
     <string name="button">Button</string>
     <string name="no_cards_message">No cards in deck to review</string>
+    <string name="required_title_message">Title is required</string>
+    <string name="required_description_message">Description is required</string>
 </resources>

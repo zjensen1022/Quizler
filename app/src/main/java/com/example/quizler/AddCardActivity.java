@@ -93,9 +93,21 @@ public class AddCardActivity extends AppCompatActivity {
     }
     public void saveButton(View view) {
         if (hasRunningThreads()) return;
+
+        String title = titleInput.getText().toString();
+        String description = descriptionInput.getText().toString();
+
+        if(title.isEmpty() || description.isEmpty()) {
+            if (title.isEmpty())
+                titleInput.setError(getString(R.string.required_title_message));
+            if (description.isEmpty())
+                descriptionInput.setError(getString(R.string.required_description_message));
+            return;
+        }
+
         if (isEdit) {
-            currentCard.title = titleInput.getText().toString();
-            currentCard.description = descriptionInput.getText().toString();
+            currentCard.title = title;
+            currentCard.description = description;
             updateCard.start();
         } else {
             currentCard = new Card(
