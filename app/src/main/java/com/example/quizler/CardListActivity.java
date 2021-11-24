@@ -52,8 +52,11 @@ public class CardListActivity extends AppCompatActivity {
 
         if (deckIsPopulated)
             reviewButton.button.setOnClickListener(this::reviewDeck);
-        else
+        else {
             reviewButton.button.setOnClickListener(this::reviewDisabled);
+            reviewButton.button.setAlpha(0.5f);
+        }
+
     }
 
     @Override
