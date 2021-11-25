@@ -62,10 +62,13 @@ public class DatabaseHelper {
         List<Card> deck = cardDao.loadAllByDeckId(deck_id);
         db.close();
         activity.runOnUiThread(() -> {
+            // disables the review button if deck is empty
+            activity.handleReviewButton(!deck.isEmpty());
             RecyclerView rv = activity.findViewById(R.id.rvCards);
             rv.setLayoutManager(new LinearLayoutManager(activity));
             rv.setAdapter(new CardListAdapter(deck));
         });
+
     }
     public static void loadCardsForReview(int deck_id, ReviewCardActivity activity) {
         AppDatabase db = createDB(activity);

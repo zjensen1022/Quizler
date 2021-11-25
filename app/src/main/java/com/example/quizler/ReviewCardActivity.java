@@ -7,8 +7,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,15 +31,12 @@ public class ReviewCardActivity extends AppCompatActivity {
     private static String deckName;
     ActivityResultLauncher<Intent> endReviewActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == EXIT_REVIEW_CODE) {
-                        finish();
-                    }
-                    if (result.getResultCode() == REVIEW_AGAIN_CODE) {
-                        setupReview();
-                    }
+            result -> {
+                if (result.getResultCode() == EXIT_REVIEW_CODE) {
+                    finish();
+                }
+                if (result.getResultCode() == REVIEW_AGAIN_CODE) {
+                    setupReview();
                 }
             }
     );
@@ -102,7 +97,6 @@ public class ReviewCardActivity extends AppCompatActivity {
      * The next button is used for both revealing the back side of the card,
      * and moving to the next card once the answer on the current card has
      * been revealed.
-     * @param view
      */
     public void next(View view) {
         if(currentIndex < deck.size()) {

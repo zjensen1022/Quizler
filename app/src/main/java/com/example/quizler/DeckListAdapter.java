@@ -1,7 +1,6 @@
 package com.example.quizler;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class DeckListAdapter extends RecyclerView.Adapter {
-    private List<Deck> decks;
+    private final List<Deck> decks;
 
     public DeckListAdapter(List<Deck> decks) {
         this.decks = decks;
@@ -31,14 +30,11 @@ public class DeckListAdapter extends RecyclerView.Adapter {
         Deck deck = decks.get(position);
         ViewHolder vh = (ViewHolder) holder;
         vh.deckName.setText(deck.name);
-        vh.view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), CardListActivity.class);
-                intent.putExtra("deck_id", deck.id);
-                intent.putExtra("deck_name", deck.name);
-                view.getContext().startActivity(intent);
-            }
+        vh.view.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), CardListActivity.class);
+            intent.putExtra("deck_id", deck.id);
+            intent.putExtra("deck_name", deck.name);
+            view.getContext().startActivity(intent);
         });
     }
 

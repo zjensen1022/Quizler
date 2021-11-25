@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -26,13 +25,16 @@ public class EndReviewActivity extends AppCompatActivity {
 
         Context context = this;
 
-        // Ensures that the back button returns to the main activity.
+        // Ensures that the back button returns to cardListActivity
         OnBackPressedCallback callback = new OnBackPressedCallback(true){
 
             @Override
             public void handleOnBackPressed() {
-                Intent intent = new Intent(context, MainActivity.class);
+                Intent intent = new Intent(getBaseContext(), CardListActivity.class);
+                intent.putExtra("deck_id", getIntent().getIntExtra("deck_id", 0));
+                intent.putExtra("deck_name", getIntent().getStringExtra("deck_name"));
                 startActivity(intent);
+                finish();
             }
         };
 

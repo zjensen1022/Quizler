@@ -1,18 +1,17 @@
 package com.example.quizler;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.flexbox.FlexboxLayout;
 
 public class AddDeckActivity extends AppCompatActivity {
 
-    private static final String TAG = "AddDeckActivity";
     private EditText input;
     private boolean isEdit;
     public Deck currentDeck;
@@ -53,7 +52,7 @@ public class AddDeckActivity extends AppCompatActivity {
         bottomBar.addView(saveButton);
         bottomBar.addView(cancelButton);
         if (isEdit) {
-            CustomButton deleteButton = new CustomButton(bottomBar.getContext());
+            CustomButton deleteButton = new DeleteButton(bottomBar.getContext());
             deleteButton.button.setText(R.string.delete);
             deleteButton.button.setOnClickListener(this::deleteButton);
             bottomBar.addView(deleteButton);
@@ -93,8 +92,7 @@ public class AddDeckActivity extends AppCompatActivity {
     }
     public void deleteButton(View view) {
         if (hasRunningThreads()) return;
-        deleteDeck.start();
-        Log.d(TAG, "deleting deck");
+        generateDeleteDialog().show();
     }
     public void saveButton(View view) {
         if (hasRunningThreads()) return;
@@ -104,5 +102,28 @@ public class AddDeckActivity extends AppCompatActivity {
         } else {
             saveDeck.start();
         }
+    }
+
+    private AlertDialog generateDeleteDialog() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle(R.string.delete_deck);
+        builder.setMessage(R.string.delete_deck_question);
+        builder.setCancelable(true);
+
+        builder.setPositiveButton(
+                R.string.delete,
+                (dialogInterface, i) -> {
+                    deleteDeck.start();
+                    dialogInterface.cancel();
+                });
+
+        builder.setNegativeButton(
+                R.string.cancel,
+                ((dialogInterface, i) -> dialogInterface.cancel())
+        );
+
+        return builder.create();
     }
 }

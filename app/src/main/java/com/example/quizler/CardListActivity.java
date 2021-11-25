@@ -3,6 +3,7 @@ package com.example.quizler;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -11,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.flexbox.FlexboxLayout;
 
 public class CardListActivity extends AppCompatActivity {
+
+    CustomButton reviewButton;
 
     // Handles whether or not deck was edited
     ActivityResultLauncher<Intent> editDeckActivityResultLauncher = registerForActivityResult(
@@ -36,9 +39,8 @@ public class CardListActivity extends AppCompatActivity {
         editDeck.button.setText(R.string.edit_deck);
         editDeck.button.setOnClickListener(this::editDeck);
         bottomBar.addView(editDeck);
-        CustomButton reviewButton = new CustomButton(bottomBar.getContext());
+        reviewButton = new CustomButton(bottomBar.getContext());
         reviewButton.button.setText(R.string.review);
-        reviewButton.button.setOnClickListener(this::reviewDeck);
         bottomBar.addView(reviewButton);
         CustomButton addCardButton = new CustomButton(bottomBar.getContext());
         addCardButton.button.setText(R.string.add_card);
@@ -46,9 +48,19 @@ public class CardListActivity extends AppCompatActivity {
         bottomBar.addView(addCardButton);
     }
 
+    public void handleReviewButton(boolean deckIsPopulated) {
+
+        if (deckIsPopulated)
+            reviewButton.button.setOnClickListener(this::reviewDeck);
+        else {
+            reviewButton.button.setOnClickListener(this::reviewDisabled);
+            reviewButton.button.setAlpha(0.5f);
+        }
+
+    }
+
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         finish();
     }
 
@@ -78,4 +90,9 @@ public class CardListActivity extends AppCompatActivity {
         intent.putExtra("deck_name", getIntent().getStringExtra("deck_name"));
         startActivity(intent);
     }
+
+    public void reviewDisabled(View view) {
+        Toast.makeText(this, getString(R.string.no_cards_message), Toast.LENGTH_LONG).show();
+    }
+
 }

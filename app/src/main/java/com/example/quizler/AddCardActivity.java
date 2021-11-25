@@ -18,10 +18,10 @@ public class AddCardActivity extends AppCompatActivity {
     final int DEFAULT_CARD_ID = -1;
     private int cardId = DEFAULT_CARD_ID;
     private int deckId = DEFAULT_CARD_ID;
-    private Thread getCardForUpdate = new Thread(() -> DatabaseHelper.getSingleCardForEdit(cardId, this));
-    private Thread saveCard = new Thread(() -> DatabaseHelper.saveCard(currentCard, this));
-    private Thread updateCard = new Thread(() -> DatabaseHelper.updateCard(currentCard, this));
-    private Thread deleteCard = new Thread(() -> DatabaseHelper.deleteCard(currentCard, this));
+    private final Thread getCardForUpdate = new Thread(() -> DatabaseHelper.getSingleCardForEdit(cardId, this));
+    private final Thread saveCard = new Thread(() -> DatabaseHelper.saveCard(currentCard, this));
+    private final Thread updateCard = new Thread(() -> DatabaseHelper.updateCard(currentCard, this));
+    private final Thread deleteCard = new Thread(() -> DatabaseHelper.deleteCard(currentCard, this));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,7 @@ public class AddCardActivity extends AppCompatActivity {
         bottomBar.addView(saveButton);
         bottomBar.addView(cancelButton);
         if (isEdit) {
-            CustomButton deleteButton = new CustomButton(bottomBar.getContext());
+            CustomButton deleteButton = new DeleteButton(bottomBar.getContext());
             deleteButton.button.setText(R.string.delete);
             deleteButton.button.setOnClickListener(this::deleteButton);
             bottomBar.addView(deleteButton);
@@ -93,9 +93,21 @@ public class AddCardActivity extends AppCompatActivity {
     }
     public void saveButton(View view) {
         if (hasRunningThreads()) return;
+
+        String title = titleInput.getText().toString();
+        String description = descriptionInput.getText().toString();
+
+        if(title.isEmpty() || description.isEmpty()) {
+            if (title.isEmpty())
+                titleInput.setError(getString(R.string.required_title_message));
+            if (description.isEmpty())
+                descriptionInput.setError(getString(R.string.required_description_message));
+            return;
+        }
+
         if (isEdit) {
-            currentCard.title = titleInput.getText().toString();
-            currentCard.description = descriptionInput.getText().toString();
+            currentCard.title = title;
+            currentCard.description = description;
             updateCard.start();
         } else {
             currentCard = new Card(

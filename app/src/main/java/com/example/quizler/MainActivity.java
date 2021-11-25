@@ -11,9 +11,6 @@ import com.google.android.flexbox.FlexboxLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Intent intent;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
