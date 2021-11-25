@@ -96,8 +96,16 @@ public class AddDeckActivity extends AppCompatActivity {
     }
     public void saveButton(View view) {
         if (hasRunningThreads()) return;
+
+        String name = input.getText().toString();
+
+        if (name.isEmpty()) {
+            input.setError(getString(R.string.title_required));
+            return;
+        }
+
         if (isEdit) {
-            currentDeck.name = input.getText().toString();
+            currentDeck.name = name;
             updateDeck.start();
         } else {
             saveDeck.start();

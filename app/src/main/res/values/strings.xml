@@ -43,4 +43,5 @@
     <string name="no_cards_message">No cards in deck to review</string>
     <string name="required_title_message">Title is required</string>
     <string name="required_description_message">Description is required</string>
+    <string name="title_required">Title required</string>
 </resources>
