@@ -50,8 +50,10 @@ public class CardListActivity extends AppCompatActivity {
 
     public void handleReviewButton(boolean deckIsPopulated) {
 
-        if (deckIsPopulated)
+        if (deckIsPopulated) {
             reviewButton.button.setOnClickListener(this::reviewDeck);
+            reviewButton.button.setAlpha(1f);
+        }
         else {
             reviewButton.button.setOnClickListener(this::reviewDisabled);
             reviewButton.button.setAlpha(0.5f);
