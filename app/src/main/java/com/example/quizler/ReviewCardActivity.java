@@ -2,6 +2,7 @@ package com.example.quizler;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,6 +25,11 @@ public class ReviewCardActivity extends AppCompatActivity {
     private Button nextBtn;
     private TextView frontTextView;
     private TextView backTextView;
+
+    private TextView countText;
+    private Timer timer;
+
+
 
     List<Card> deck;
     static final int EXIT_REVIEW_CODE = 2;
@@ -52,7 +58,7 @@ public class ReviewCardActivity extends AppCompatActivity {
         nextBtn = findViewById(R.id.nextButton);
 
         nextBtn.setOnClickListener(this::next);
-
+        timer = new Timer();
         OnBackPressedCallback callback = new OnBackPressedCallback(true){
             @Override
             public void handleOnBackPressed() {
@@ -90,6 +96,8 @@ public class ReviewCardActivity extends AppCompatActivity {
         int deckId = intent.getIntExtra("deck_id", 0);
         Thread thread = new Thread(() -> DatabaseHelper.loadCardsForReview(deckId, this));
         thread.start();
+        timer.timerStart();
+        timer.runTimer();
     }
 
     /**
@@ -132,9 +140,13 @@ public class ReviewCardActivity extends AppCompatActivity {
     }
 
     private void endReview() {
+        timer.timerStop();
+        int finTime = timer.getTimeInSeconds();
+        timer.timerRestart();
         Intent intent = new Intent(this, EndReviewActivity.class);
         intent.putExtra("deck_id", getIntent().getIntExtra("deck_id", 0));
         intent.putExtra("deck_name", getIntent().getStringExtra("deck_name"));
+        intent.putExtra("final_time", finTime);
         endReviewActivityResultLauncher.launch(intent);
     }
 

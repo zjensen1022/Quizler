@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class EndReviewActivity extends AppCompatActivity {
 
@@ -24,7 +25,10 @@ public class EndReviewActivity extends AppCompatActivity {
         reviewBtn.setOnClickListener(this::reviewAgain);
 
         Context context = this;
-
+        int time = getIntent().getIntExtra("final_time",0);
+        TextView timeText = findViewById(R.id.lgtvLabel) ;
+        String endMessage = String.format("Finished reviewing deck in %d seconds, would you like to review again?",time);
+        timeText.setText(endMessage);
         // Ensures that the back button returns to cardListActivity
         OnBackPressedCallback callback = new OnBackPressedCallback(true){
 
