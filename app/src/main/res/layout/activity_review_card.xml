@@ -58,5 +58,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ReviewFrontText"
-        app:srcCompat="@drawable/ic_baseline_image_24" />
+        app:srcCompat="@drawable/ic_baseline_image_24"
+
+        />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
