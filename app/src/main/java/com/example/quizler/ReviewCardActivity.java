@@ -20,6 +20,7 @@ public class ReviewCardActivity extends AppCompatActivity {
     private boolean flipped; // tracks whether the answer has been revealed.
     private int currentIndex; // index of current card being reviewed
     private Card currentCard; // reference to current card being reviewed.
+    //private Timer timer;
 
     private Button nextBtn;
     private TextView frontTextView;
@@ -50,6 +51,8 @@ public class ReviewCardActivity extends AppCompatActivity {
         frontTextView = findViewById(R.id.ReviewFrontText);
         backTextView = findViewById(R.id.ReviewBackText);
         nextBtn = findViewById(R.id.nextButton);
+
+        //timer = new Timer();
 
         nextBtn.setOnClickListener(this::next);
 
@@ -90,6 +93,8 @@ public class ReviewCardActivity extends AppCompatActivity {
         int deckId = intent.getIntExtra("deck_id", 0);
         Thread thread = new Thread(() -> DatabaseHelper.loadCardsForReview(deckId, this));
         thread.start();
+
+        //timer.startTime();
     }
 
     /**
@@ -114,7 +119,11 @@ public class ReviewCardActivity extends AppCompatActivity {
     private void flipCard() {
         backTextView.setText(currentCard.getDescription());
         backTextView.setVisibility(View.VISIBLE);
-        nextBtn.setText(R.string.next);
+
+        if(currentIndex < deck.size() -1)
+            nextBtn.setText(R.string.next);
+        else
+            nextBtn.setText(R.string.finish);
 
         currentIndex++;
         flipped = true;
@@ -132,9 +141,15 @@ public class ReviewCardActivity extends AppCompatActivity {
     }
 
     private void endReview() {
+        //timer.stopTime();
+
         Intent intent = new Intent(this, EndReviewActivity.class);
         intent.putExtra("deck_id", getIntent().getIntExtra("deck_id", 0));
         intent.putExtra("deck_name", getIntent().getStringExtra("deck_name"));
+        //intent.putExtra("review_time", timer.getTimeAsString());
+
+        //timer.reset();
+
         endReviewActivityResultLauncher.launch(intent);
     }
 

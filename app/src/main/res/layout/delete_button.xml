@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/red"
-        android:text="@string/button"
+        android:text="button"
         android:textColor="@color/white"
         app:cornerRadius="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

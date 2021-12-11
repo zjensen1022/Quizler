@@ -36,12 +36,11 @@
     <string name="exit_review">Exit Review</string>
     <string name="add">Add</string>
     <string name="review">Review</string>
-    <string name="delete_deck_question">Are you sure you want to delete the deck and all of its cards?
-    this action cannot be undone.</string>
-    <string name="delete_deck">Delete Deck</string>
-    <string name="button">Button</string>
-    <string name="no_cards_message">No cards in deck to review</string>
-    <string name="required_title_message">Title is required</string>
-    <string name="required_description_message">Description is required</string>
-    <string name="title_required">Title required</string>
+    <string name="finish">Finish</string>
+    <string name="required_title_message">Title required</string>
+    <string name="required_description_message">description required</string>
+    <string name="title_required">Title is required</string>
+    <string name="delete_deck">Delete deck</string>
+    <string name="delete_deck_question">Are you sure you want to delete this deck and all it\'s contents? This action cannot be undone.</string>
+    <string name="no_cards_message">There are no cards in deck to review</string>
 </resources>
